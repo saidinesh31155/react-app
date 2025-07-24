@@ -4,8 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Cache
-        uses: actions/cache@v4.2.3
+      - name: Checkout
+        uses: actions/checkout@v4.2.2 
       - name: build docker image
         run: docker build -t ${{ vars.DOCKER_USERNAME }}/react-app:latest
       - name: Docker Login
