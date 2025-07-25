@@ -22,7 +22,7 @@ jobs:
       - name: pull the docker image 
         run: docker pull ${{ vars.DOCKER_USERNAME }}/react-app:latest
       - name: run docker container
-        run: docker container run -dt --name react -p 8082:80 ${{ vars.DOCKER_USERNAME }}/react-app:latest
+        run: docker container run -dt --name react-prod -p 8083:80 ${{ vars.DOCKER_USERNAME }}/react-app:latest
       - name: list the container 
         run: docker container ls -a
         
