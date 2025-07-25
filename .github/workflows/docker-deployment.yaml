@@ -19,12 +19,14 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
-      - name: remove old deploy
+      - name: Remove Container
         run: docker container rm -f react
+      - name: remove old image
+        run: docker rm ${{vars.DOCKER_USERNAME}}/react-app:latest
       - name: pull the docker image 
         run: docker pull ${{ vars.DOCKER_USERNAME }}/react-app:latest
       - name: run docker container
-        run: docker container run -dt --name react -p 8081:80 ${{ vars.DOCKER_USERNAME }}/react-app:latest
+        run: docker container run -dt --name react -p 8082:80 ${{ vars.DOCKER_USERNAME }}/react-app:latest
       - name: list the container 
         run: docker container ls -a
         
