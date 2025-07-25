@@ -20,7 +20,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Remove Container
-        run: docker container rm -f react
+        run: docker container rm -f react:latest
       - name: remove old image
         run: docker rmi ${{vars.DOCKER_USERNAME}}/react-app:latest
   deploy:
