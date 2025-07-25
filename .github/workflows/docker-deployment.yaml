@@ -15,14 +15,18 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: push image to dockerhub
         run: docker push ${{ vars.DOCKER_USERNAME }}/react-app:latest
-  deploy:
+  old-deployment:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Remove Container
         run: docker container rm -f react
       - name: remove old image
-        run: docker rm ${{vars.DOCKER_USERNAME}}/react-app:latest
+        run: docker rmi ${{vars.DOCKER_USERNAME}}/react-app:latest
+  deploy:
+    needs: old-deployment
+    runs-on: self-hosted
+    steps:
       - name: pull the docker image 
         run: docker pull ${{ vars.DOCKER_USERNAME }}/react-app:latest
       - name: run docker container
